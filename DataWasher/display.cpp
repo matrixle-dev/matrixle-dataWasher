@@ -37,7 +37,14 @@ Display::Display(QWidget *parent)
       washer.washNumber("toefl", "toefl");
       washer.washNumber("year", "year");
       washer.washString("school", "school");
+      washer.washString("roundApp", "roundApp");
       washer.washStringArray("major", "major");
+      washer.washStringArray("activities", "activity");
+      washer.washStringArray("commonapp", "commonapp");
+      washer.washStringArray("related_tests", "relatedTests");
+
+      washer.washStringArray("supps", "supps");
+
 
       QJsonArray ieltsArray;
       for(int i = 0; i < 4; i ++) // because nobody takes ielts!! Bad!!!
