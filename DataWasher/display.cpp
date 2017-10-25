@@ -26,6 +26,13 @@ Display::Display(QWidget *parent)
 
   QJsonArray writeJsonArray;
 
+  QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+  db.setHostName("127.0.0.1");
+  db.setDatabaseName("matrixel");
+  db.setUserName("root");
+  db.setPassword("054104334");
+  qDebug()<<db.open();
+
   foreach(QJsonValue val, readJsonDocument.array())
     {
       QJsonObject iPeople = val.toObject();\
@@ -52,6 +59,11 @@ Display::Display(QWidget *parent)
       oPeople.insert("ielts", ieltsArray);
 
       writeJsonArray.append(oPeople);
+
+      QJsonDocument doc = QJsonDocument::fromVariant(oPeople);
+
+      QCryptographicHash::hash(doc.toJson(), QCryptographicHash::Md5);
+
     }
 
   QJsonDocument writeJsonDocument(writeJsonArray);
