@@ -32,7 +32,7 @@ QString DataWasher::extractString(QString str)
       else
           break;
     }
-  return str;
+  return str.replace("\'","\'\'");
 }
 
 bool DataWasher::washNumber(const QString &iObjName, const QString &oObjName)

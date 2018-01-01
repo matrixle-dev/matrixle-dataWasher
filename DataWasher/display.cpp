@@ -26,15 +26,17 @@ Display::Display(QWidget *parent)
 
   QJsonArray writeJsonArray;
 
-  QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+  QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL","matrixle");
   db.setHostName("127.0.0.1");
-  db.setDatabaseName("matrixel");
+//  db.setDatabaseName("matrixle");
   db.setUserName("root");
-  db.setPassword("054104334");
+//  db.setPassword("054104334");
   qDebug()<<db.open();
 
+  int i = 0;
   foreach(QJsonValue val, readJsonDocument.array())
     {
+      qDebug()<<i++;
       QJsonObject iPeople = val.toObject();\
       QJsonObject oPeople;
 
@@ -75,7 +77,7 @@ Display::Display(QWidget *parent)
       return;
     }
   QTextStream out(&oFile);
-  out << readJsonDocument.toJson(QJsonDocument::Indented);
+  out << writeJsonDocument.toJson(QJsonDocument::Indented);
   oFile.close();
   oFile.flush();
 
